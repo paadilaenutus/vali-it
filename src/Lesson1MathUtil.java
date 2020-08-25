@@ -1,14 +1,19 @@
 import java.sql.SQLOutput;
+import java.util.Scanner;
 
 public class Lesson1MathUtil {
 
     public static void main(String[] args) {
-        int minimum = min(-3, 5);
-        int maximum = max(3, 5);
-        int absolute = abs(-1154);
-        boolean odds = isEven(888);
-        int minimum3 = min(3, 3, 5);
-        int maximum3 = max(6, 6, 4);
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        int m = scanner.nextInt();
+        int k = scanner.nextInt();
+        int minimum = min(n, m);
+        int maximum = max(n, m);
+        int absolute = abs(n);
+        boolean odds = isEven(n);
+        int minimum3 = min(n, m, k);
+        int maximum3 = max(n, m, k);
         System.out.println(minimum);
         System.out.println(maximum);
         System.out.println(absolute);
