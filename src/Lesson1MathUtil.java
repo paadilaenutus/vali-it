@@ -4,22 +4,41 @@ import java.util.Scanner;
 public class Lesson1MathUtil {
 
     public static void main(String[] args) {
+        System.out.println("Call method: ");
+        Scanner string1 = new Scanner(System.in);
         Scanner scanner = new Scanner(System.in);
-        int n = scanner.nextInt();
-        int m = scanner.nextInt();
-        int k = scanner.nextInt();
-        int minimum = min(n, m);
-        int maximum = max(n, m);
-        int absolute = abs(n);
-        boolean odds = isEven(n);
-        int minimum3 = min(n, m, k);
-        int maximum3 = max(n, m, k);
-        System.out.println(minimum);
-        System.out.println(maximum);
-        System.out.println(absolute);
-        System.out.println(odds);
-        System.out.println(minimum3);
-        System.out.println(maximum3);
+        String query = string1.nextLine();
+        if (query.equalsIgnoreCase("minimum")) {
+            int n = scanner.nextInt();
+            int m = scanner.nextInt();
+            System.out.println(min(n, m));
+        }
+        else if (query.equalsIgnoreCase("maximum")) {
+            int n = scanner.nextInt();
+            int m = scanner.nextInt();
+            System.out.println(max(n, m));
+        }
+        else if (query.equalsIgnoreCase("absolute")) {
+            int n = scanner.nextInt();
+            System.out.println(abs(n));
+        }
+        else if (query.equalsIgnoreCase("oddeven")) {
+            int n = scanner.nextInt();
+            System.out.println(isEven(n));
+        }
+        else if (query.equalsIgnoreCase("maximum3")) {
+            int n = scanner.nextInt();
+            int m = scanner.nextInt();
+            int k = scanner.nextInt();
+            System.out.println(max(n, m, k));
+        }
+        else if (query.equalsIgnoreCase("minimum3")) {
+            int n = scanner.nextInt();
+            int m = scanner.nextInt();
+            int k = scanner.nextInt();
+            System.out.println(min(n, m, k));
+        }
+        else System.out.println("Incorrect input");
     }
 
     public static int min(int a, int b) {
@@ -40,7 +59,8 @@ public class Lesson1MathUtil {
         // TODO tagasta a absoluut arv
         if (a < 0) {
             a *= -1;
-        } return a;
+        }
+        return a;
     }
 
     public static boolean isEven(int a) {

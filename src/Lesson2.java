@@ -1,10 +1,12 @@
 import java.math.BigDecimal;
+import java.util.Scanner;
 
 public class Lesson2 {
 
     public static void main(String[] args) {
-        exercise1();
-        exercise2(4);
+
+     //   exercise1();
+     //   exercise2(4);
         exercise3(2, 5);
         fibonacci(5);
         exercise5();
@@ -12,8 +14,17 @@ public class Lesson2 {
 
     public static void exercise1() {
         // TODO loo 10 elemendile täisarvude massiv
+        int[] i = new int[10];
         // TODO loe sisse konsoolist 10 täisarvu
+        Scanner scanner = new Scanner(System.in);
+        for(int n = 0; n<10; n++){
+            i[n] = scanner.nextInt();
+        }
+
         // TODO trüki arvud välja vastupidises järiekorras
+        for(int j = 9; j>=0; j--){
+            System.out.println(i[j]);
+        }
     }
 
     public static void exercise2(int x) {
@@ -21,6 +32,11 @@ public class Lesson2 {
         // Näide:
         // Sisend 5
         // Väljund 2 4 6 8 10
+        Scanner scanner = new Scanner(System.in);
+        int num = scanner.nextInt();
+        for(int i = 1; i< num + 1; i++){
+            System.out.println(i * 2);
+        }
     }
 
     public static void exercise3(int x, int y) {
@@ -30,6 +46,15 @@ public class Lesson2 {
         // 1 2 3
         // 2 4 6
         // 3 6 9
+        Scanner scanner = new Scanner(System.in);
+        int xx = scanner.nextInt();
+        int yy = scanner.nextInt();
+        for(int i = 1; i < xx + 1; i++){
+            for(int j = 1; j < yy + 1; j++){
+                System.out.print(i*j);
+            }
+            System.out.println();
+        }
     }
 
     public static int fibonacci(int n) {
