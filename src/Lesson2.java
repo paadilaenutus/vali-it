@@ -83,15 +83,26 @@ public class Lesson2 {
         if (i < 0 || i > 10000 || j < 0 || j > 10000) {
             return;
         }
-        int cycles = j - i + 1;
-        int loop = i;
+        //declare amount of cycles(for) and loops(while), declare temp int for storing either i or j depending which is smaller in size
+        int cycles = 0;
+        int temp = 0;
+        int loop = 0;
+        if (i < j) {
+            cycles = j - i + 1;
+            temp = i;
+        } else if (j < i) {
+            cycles = i - j + 1;
+            temp = j;
+        }
+        //declare counter for every mathematical iteration
         int counter = 0;
+        //maxcycle is updated every time when the counter is higher than in previous cycle
         int maxcycle = 0;
         System.out.print(i + " ");
         System.out.print(j + " ");
-        for (int k = 1; k <= cycles; k++) {
+        for (int k = 0; k < cycles; k++) {
             counter = 0;
-            loop = i - 1 + k;
+            loop = temp + k;
             while (loop != 1) {
                 if (loop % 2 != 0) {
                     loop = loop * 3 + 1;

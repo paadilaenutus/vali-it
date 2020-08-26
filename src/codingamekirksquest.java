@@ -20,7 +20,7 @@ class Player {
             int imax = 0;
             for (int i = 0; i < 8; i++) {
                 int mountainH = in.nextInt(); // represents the height of one mountain.
-                if (mountainH > max){
+                if (mountainH > max) {
                     max = mountainH;
                     imax = i;
                 }
