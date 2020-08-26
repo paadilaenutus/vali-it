@@ -5,11 +5,17 @@ public class Lesson2 {
 
     public static void main(String[] args) {
 
-     //   exercise1();
-     //   exercise2(4);
-        exercise3(2, 5);
-        fibonacci(5);
-        exercise5();
+        //   exercise1();
+        //   exercise2(4);
+        //   exercise3(2, 5);
+        // fibonacci(0);
+        // System.out.print(fibonacci(7));
+        //   exercise5();
+        Scanner scanner = new Scanner(System.in);
+        int i = scanner.nextInt();
+        int j = scanner.nextInt();
+        exercise5(i, j);
+
     }
 
     public static void exercise1() {
@@ -17,12 +23,12 @@ public class Lesson2 {
         int[] i = new int[10];
         // TODO loe sisse konsoolist 10 täisarvu
         Scanner scanner = new Scanner(System.in);
-        for(int n = 0; n<10; n++){
+        for (int n = 0; n < 10; n++) {
             i[n] = scanner.nextInt();
         }
 
         // TODO trüki arvud välja vastupidises järiekorras
-        for(int j = 9; j>=0; j--){
+        for (int j = 9; j >= 0; j--) {
             System.out.println(i[j]);
         }
     }
@@ -34,7 +40,7 @@ public class Lesson2 {
         // Väljund 2 4 6 8 10
         Scanner scanner = new Scanner(System.in);
         int num = scanner.nextInt();
-        for(int i = 1; i< num + 1; i++){
+        for (int i = 1; i < num + 1; i++) {
             System.out.println(i * 2);
         }
     }
@@ -49,25 +55,59 @@ public class Lesson2 {
         Scanner scanner = new Scanner(System.in);
         int xx = scanner.nextInt();
         int yy = scanner.nextInt();
-        for(int i = 1; i < xx + 1; i++){
-            for(int j = 1; j < yy + 1; j++){
-                System.out.print(i*j);
+        for (int i = 1; i < xx + 1; i++) {
+            for (int j = 1; j < yy + 1; j++) {
+                System.out.print(i * j);
             }
             System.out.println();
         }
     }
 
-    public static int fibonacci(int n) {
+    public static int fibonacci(int i) {
         // TODO
         // Fibonacci jada on fib(n) = fib(n-1) + fib(n-2);
         // 0, 1, 1, 2, 3, 5, 8, 13, 21
         // Tagasta fibonacci jada n element
-        return 0;
+        if (i == 0) {
+            return 0;
+        } else if (i == 1) {
+            return 1;
+        } else {
+            return (fibonacci(i - 1)) + (fibonacci(i - 2));
+        }
     }
 
-    public static void exercise5() {
+
+    public static void exercise5(int i, int j) {
         // https://onlinejudge.org/index.php?option=onlinejudge&Itemid=8&page=show_problem&problem=36
+        if (i < 0 || i > 10000 || j < 0 || j > 10000) {
+            return;
+        }
+        int cycles = j - i + 1;
+        int loop = i;
+        int counter = 0;
+        int maxcycle = 0;
+        System.out.print(i + " ");
+        System.out.print(j + " ");
+        for (int k = 1; k <= cycles; k++) {
+            counter = 0;
+            loop = i - 1 + k;
+            while (loop != 1) {
+                if (loop % 2 != 0) {
+                    loop = loop * 3 + 1;
+                } else loop = loop / 2;
+                //System.out.print(m + " ");
+                counter++;
+            }
+            counter++;
+            if (counter > maxcycle) {
+                maxcycle = counter;
+            }
+        }
+
+        System.out.println(maxcycle);
     }
+
 
     public static void exercise6() {
         /*
