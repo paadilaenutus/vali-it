@@ -1,5 +1,9 @@
+import javax.management.StringValueExp;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.math.BigDecimal;
-import java.util.Scanner;
+import java.math.BigInteger;
+import java.util.*;
 
 public class Lesson2 {
 
@@ -11,11 +15,13 @@ public class Lesson2 {
         // fibonacci(0);
         // System.out.print(fibonacci(7));
         //   exercise5();
-        Scanner scanner = new Scanner(System.in);
-        int i = scanner.nextInt();
-        int j = scanner.nextInt();
-        exercise5(i, j);
-
+        //  Scanner scanner = new Scanner(System.in);
+        //  int i = scanner.nextInt();
+        //  int j = scanner.nextInt();
+        //   exercise5(i, j);
+        //exercise6();
+        // exercise8();
+        exercise9();
     }
 
     public static void exercise1() {
@@ -120,13 +126,52 @@ public class Lesson2 {
     }
 
 
-    public static void exercise6() {
+    public static <line2> void exercise6(){
         /*
             Kirjutada Java programm, mis loeb failist visits.txt sisse looduspargi külastajad erinevatel jaanuari päevadel ning
             a) sorteerib külastuspäevad külastajate arvu järgi kasvavalt ning prindib tulemuse konsoolile;
             b) prindib konsoolile päeva, mil külastajaid oli kõige rohkem.
             Faili asukoht tuleb programmile ette anda käsurea parameetrina.
          */
+        File visits;
+        visits = new File("C:\\Users\\opilane\\IdeaProjects\\vali-it-siim\\resources\\visits.txt");
+
+        Scanner scanner = null;
+        try {
+            scanner = new Scanner(visits);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        List<String> date = new ArrayList<>();
+        int peeps = 0;
+        int maxpeeps = 0;
+        String maxdate = "";
+        String line = "";
+        List<Integer> sortList = new ArrayList<>();
+
+        while (scanner.hasNextLine()) {
+            line = scanner.nextLine();
+            peeps = Integer.parseInt(line.substring(12));
+            //add to sorting list
+            sortList.add(peeps);
+            date.add(line);
+            if (peeps > maxpeeps) {
+                maxpeeps = peeps;
+                maxdate = line;
+            }
+        }
+        System.out.println(maxdate);
+
+
+        Comparator<String> cmp = new Comparator<String>() {
+            public int compare(String o1, String o2) {
+                int diff = (o1.substring(12)).compareTo(o2.substring(12));
+                return (diff == 0) ? (Integer.valueOf(o2.substring(12)).compareTo(Integer.valueOf(o1.substring(12)))): diff;
+            }
+        };
+        Collections.sort(date, cmp);
+        System.out.println(date);
     }
 
     public static void exercise7() {
@@ -138,6 +183,22 @@ public class Lesson2 {
     }
 
     public static void exercise8() {
+        File nums = new File("C:\\Users\\opilane\\IdeaProjects\\vali-it-siim\\resources\\nums.txt");
+        Scanner scanner = null;
+        try {
+            scanner = new Scanner(nums);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        BigInteger sum = new BigInteger("0");
+        BigInteger number = new BigInteger("0");
+        String line = "";
+        while (scanner.hasNextLine()) {
+            line = scanner.nextLine();
+            number = new BigInteger(line);
+            sum = sum.add(number);
+        }
+        System.out.println(sum);
         /*
         Failis nums.txt on üksteise all 150 60-kohalist numbrit.
 
@@ -153,6 +214,46 @@ public class Lesson2 {
         /* TODO
         Sama mis eelmises ülesandes aga ära kasuta BigInt ega BigDecimal klassi
          */
+        File nums = new File("C:\\Users\\opilane\\IdeaProjects\\vali-it-siim\\resources\\nums.txt");
+        Scanner scanner = null;
+        try {
+            scanner = new Scanner(nums);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        String line = scanner.nextLine();
+        String line2 = scanner.nextLine();
+        String kar = line.substring(60);
+        String kar2 = line2.substring(60);
+        int[] arr1 = new int[60];
+        int[] arr2 = new int[60];
+        int[] sum = new int[60];
+        arr1[59] = Integer.parseInt(kar);
+        arr2[59] = Integer.parseInt(kar2);
+        sum[59] = Integer.parseInt(kar) + Integer.parseInt(kar2);
+
+        for (int i = 0; i < 149; i++) {
+        //    line = scanner.nextLine();
+            for (int j = 59; j >= 0; j--) {
+                kar = line.substring(j);
+                kar2 = line.substring(j);
+                arr1[j] = Integer.parseInt(kar);
+                arr2[j] = Integer.parseInt(kar2);
+            }
+            for (int k = 59; k >= 0; k--) {
+                sum[k] = arr1[k] + arr2[k];
+                if (sum[k] > 9) {
+                        arr1[k-1]++;
+                }
+            }
+
+        }
+
+        while (scanner.hasNextLine()) {
+            line = scanner.nextLine();
+
+        }
+        System.out.println(sum);
     }
 
 }
